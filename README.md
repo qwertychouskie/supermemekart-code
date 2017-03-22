@@ -1,15 +1,12 @@
-# SuperTuxKart
-[![Build Status](https://travis-ci.org/supertuxkart/stk-code.png?branch=master)](https://travis-ci.org/supertuxkart/stk-code)
+# SuperMEMEKart
 
-SuperTuxKart is a free kart racing game. It focuses on fun and not on realistic kart physics. Instructions can be found on the in-game help page.
-
-The SuperTuxKart homepage can be found at <https://supertuxkart.net/>. There is also our [FAQ](https://supertuxkart.net/FAQ) and information on how get in touch with the [community](https://supertuxkart.net/Community)
+SuperMEMEKart is a free kart racing game. It focuses on fun and not on realistic kart physics. Instructions can be found on the in-game help page.
 
 ## Hardware Requirements
 * You need a 3D graphics card. (NVIDIA GeForce 8xxx and higher, ATI Radeon HD 4xxx and higher or Intel HD 3000 and higher.)
 * You should have a CPU that's running at 1GHz or better.
 * You'll need at least 512 MB of free VRAM (video memory).
-* Disk space: 400MB
+* Disk space: 600MB
 * Ideally, you want a joystick with at least 6 buttons.
 
 ## License
@@ -18,7 +15,7 @@ This software is released under the GNU General Public License (GPL) which can b
 ## 3D coordinates
 A reminder for those looking at the code and 3d models:
 
-STK    : X right, Y up,       Z forwards
+SMK    : X right, Y up,       Z forwards
 
 Blender: X right, Y forwards, Z up
 
@@ -61,7 +58,7 @@ mesa-common-dev pkg-config zlib1g-dev
 
 ### Compiling
 
-Compile SuperTuxKart:
+Compile SuperMEMEKart:
 
 ```
 mkdir cmake_build
@@ -69,11 +66,11 @@ cd cmake_build
 cmake ..
 make -j4
 ```
-STK can then be run from the build directory with `bin/supertuxkart`
+SMK can then be run from the build directory with `bin/supertuxkart`
 
 ### Further options
 
-To create a debug version of STK, use:
+To create a debug version of SMK, use:
 
 ```
 cmake .. -DCMAKE_BUILD_TYPE=Debug

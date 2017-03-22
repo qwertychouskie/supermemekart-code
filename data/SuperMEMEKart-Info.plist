@@ -7,9 +7,9 @@
 	<key>CFBundleExecutable</key>
 	<string>SuperTuxKart</string>
 	<key>CFBundleIconFile</key>
-	<string>supertuxkart.icns</string>
+	<string>supermemekart.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>net.sourceforge.supertuxkart</string>
+	<string>net.qwertychouskie.supermemekart</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

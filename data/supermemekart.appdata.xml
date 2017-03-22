@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2014 Richard Hughes <richard@hughsie.com> -->
 <component type="desktop">
-  <id>supertuxkart.desktop</id>
+  <id>supermemekart.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0+</project_license>
-  <name>SuperTuxKart</name>
-  <summary>A racing game</summary>
+  <name>SuperMEMEKart</name>
+  <summary>A racing game with MEMES!!!</summary>
   <description>
     <p>
-      Supertuxkart is a free 3D kart racing game, with a focus on having fun over
+      SuperMEMEKart is a free 3D kart racing game, with a focus on having fun over
       realism. You can play with up to 4 friends on one PC, racing against each
       other, or try to beat the computer in single-player mode.
     </p>
@@ -39,11 +39,8 @@
       <caption>Soccer Mode</caption>
     </screenshot>
   </screenshots>
-  <developer_name>SuperTuxKart Team</developer_name>
-  <update_contact>supertuxkart-devel@lists.sourceforge.net</update_contact>
-  <url type="homepage">https://supertuxkart.net</url>
-  <url type="bugtracker">https://github.com/supertuxkart/stk-code/issues</url>
-  <url type="donation">https://supertuxkart.net/Donate</url>
-  <url type="help">https://supertuxkart.net/Community</url>
-  <url type="translate">https://supertuxkart.net/Translating_STK</url>
+  <developer_name>QwertyChouskie, SuperTuxKart Team</developer_name>
+  <update_contact>asdfghrbljzmkd@outlook.com</update_contact>
+  <url type="homepage">https://github.com/QwertyChouskie/supermemekart-code</url>
+  <url type="bugtracker">https://github.com/QwertyChouskie/supermemekart-code/issues</url>
 </component>

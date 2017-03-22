@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=SuperMEMEKart
+Icon=supermemekart
+GenericName=A kart racing game with MEMES!!!
+Exec=supertuxkart
+Terminal=false
+StartupNotify=false
+Type=Application
+Categories=Game;ArcadeGame;
+Keywords=tux;game;race;

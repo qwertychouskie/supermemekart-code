@@ -1,6 +1,6 @@
-# root CMakeLists for the SuperTuxKart project
-project(SuperTuxKart)
-set(PROJECT_VERSION "0.9.1")
+# root CMakeLists for the SuperMEMEKart project
+project(SuperMEMEKart)
+set(PROJECT_VERSION "0.9.3")
 
 cmake_minimum_required(VERSION 2.8.4)
 if(NOT (CMAKE_MAJOR_VERSION VERSION_LESS 3))
@@ -22,7 +22,7 @@ option(USE_SYSTEM_ANGELSCRIPT "Use system angelscript instead of built-in angels
 option(ENABLE_NETWORK_MULTIPLAYER "Enable network multiplayer. This will replace the online profile GUI in the main menu with the network multiplayer GUI" OFF)
 
 if (UNIX AND NOT APPLE)
-    option(USE_GLES2 "Use OpenGL ES2 renderer" OFF)
+    option(USE_GLES2 "Use OpenGL ES renderer" OFF)
 endif()
 
 if(MSVC AND (MSVC_VERSION LESS 1900))
@@ -53,7 +53,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
 # Define install paths
 set(STK_INSTALL_BINARY_DIR "bin" CACHE
     STRING "Install executable to this directory, absolute or relative to CMAKE_INSTALL_PREFIX")
-set(STK_INSTALL_DATA_DIR "share/supertuxkart" CACHE
+set(STK_INSTALL_DATA_DIR "share/supermemekart" CACHE
     STRING "Install data folder to this directory, absolute or relative to CMAKE_INSTALL_PREFIX")
 
 # These variables enable MSVC to find libraries located in "dependencies"
@@ -195,7 +195,7 @@ if(FREETYPE_FOUND)
     include_directories(${FREETYPE_INCLUDE_DIRS})
 else()
     message(FATAL_ERROR "Freetype not found. "
-        "Freetype is required to display characters in SuperTuxKart. ")
+        "Freetype is required to display characters in SuperMEMEKart. ")
 endif()
 
 # Fribidi
@@ -297,12 +297,12 @@ source_group_hierarchy(STK_SOURCES STK_HEADERS)
 
 if(APPLE)
     # icon files to copy in the bundle
-    set(OSX_ICON_FILES ${PROJECT_SOURCE_DIR}/data/supertuxkart.icns)
+    set(OSX_ICON_FILES ${PROJECT_SOURCE_DIR}/data/supermemekart.icns)
     set_source_files_properties(${OSX_ICON_FILES} PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
     set(STK_SOURCES ${STK_SOURCES} ${OSX_ICON_FILES})
 
     # build the executable and create an app bundle
-    add_executable(supertuxkart MACOSX_BUNDLE ${STK_SOURCES})
+    add_executable(supermemekart MACOSX_BUNDLE ${STK_SOURCES})
 
     find_library(IOKIT_LIBRARY IOKit)
     find_library(QUICKTIME_LIBRARY QuickTime)
@@ -310,7 +310,7 @@ if(APPLE)
     find_library(AUDIOUNIT_LIBRARY AudioUnit)
     find_library(COCOA_LIBRARY Cocoa)
 
-    target_link_libraries(supertuxkart
+    target_link_libraries(supermemekart
          ${IOKIT_LIBRARY}
          ${QUICKTIME_LIBRARY}
          ${CARBON_LIBRARY}
@@ -318,15 +318,15 @@ if(APPLE)
          ${COCOA_LIBRARY})
 
     # configure CMake to use a custom Info.plist
-    set_target_properties(supertuxkart PROPERTIES
-        MACOSX_BUNDLE_INFO_PLIST ${PROJECT_SOURCE_DIR}/data/SuperTuxKart-Info.plist)
+    set_target_properties(supermemekart PROPERTIES
+        MACOSX_BUNDLE_INFO_PLIST ${PROJECT_SOURCE_DIR}/data/SuperMEMEKart-Info.plist)
 
     if(CMAKE_GENERATOR MATCHES "Xcode")
-        add_custom_command(TARGET supertuxkart POST_BUILD
-            COMMAND ln -f -s ${PROJECT_SOURCE_DIR}/data ${CMAKE_BINARY_DIR}/bin/\${CONFIGURATION}/supertuxkart.app/Contents/Resources)
+        add_custom_command(TARGET supermemekart POST_BUILD
+            COMMAND ln -f -s ${PROJECT_SOURCE_DIR}/data ${CMAKE_BINARY_DIR}/bin/\${CONFIGURATION}/supermemekart.app/Contents/Resources)
     else()
-        add_custom_command(TARGET supertuxkart POST_BUILD
-            COMMAND ln -f -s ${PROJECT_SOURCE_DIR}/data ${CMAKE_BINARY_DIR}/bin/supertuxkart.app/Contents/Resources)
+        add_custom_command(TARGET supermemekart POST_BUILD
+            COMMAND ln -f -s ${PROJECT_SOURCE_DIR}/data ${CMAKE_BINARY_DIR}/bin/supermemekart.app/Contents/Resources)
     endif()
 else()
     if(MSVC)
@@ -350,20 +350,20 @@ else()
     endif()
 
     # Build the final executable
-    add_executable(supertuxkart ${STK_SOURCES} ${STK_RESOURCES} ${STK_HEADERS})
-    target_link_libraries(supertuxkart ${PTHREAD_LIBRARY})
+    add_executable(supermemekart ${STK_SOURCES} ${STK_RESOURCES} ${STK_HEADERS})
+    target_link_libraries(supermemekart ${PTHREAD_LIBRARY})
 endif()
 
 # CURL
 if(WIN32)
-    target_link_libraries(supertuxkart ${PROJECT_SOURCE_DIR}/dependencies/lib/libcurldll.a)
+    target_link_libraries(supermemekart ${PROJECT_SOURCE_DIR}/dependencies/lib/libcurldll.a)
 else()
     find_package(CURL REQUIRED)
     include_directories(${CURL_INCLUDE_DIRS})
 endif()
 
 # Common library dependencies
-target_link_libraries(supertuxkart
+target_link_libraries(supermemekart
     bulletdynamics
     bulletcollision
     bulletmath
@@ -378,20 +378,20 @@ target_link_libraries(supertuxkart
 
 if(NOT SERVER_ONLY)
     if(NOT USE_GLES2)
-        target_link_libraries(supertuxkart ${OPENGL_LIBRARIES} glew graphics_utils)
+        target_link_libraries(supermemekart ${OPENGL_LIBRARIES} glew graphics_utils)
     else()
-        target_link_libraries(supertuxkart EGL GLESv2)
+        target_link_libraries(supermemekart EGL GLESv2)
     endif()
 endif()
 
 if(UNIX AND NOT APPLE)
-    target_link_libraries(supertuxkart ${X11_LIBRARIES} ${XRANDR_LIBRARIES})
+    target_link_libraries(supermemekart ${X11_LIBRARIES} ${XRANDR_LIBRARIES})
     if(USE_LIBBFD)
-        target_link_libraries(supertuxkart ${LIBBFD_LIBRARIES})
+        target_link_libraries(supermemekart ${LIBBFD_LIBRARIES})
     endif()
     if(USE_ASAN)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address -fno-omit-frame-pointer")
-        target_link_libraries(supertuxkart "-fsanitize=address")
+        target_link_libraries(supermemekart "-fsanitize=address")
     endif()
 endif()
 
@@ -405,12 +405,12 @@ if(APPLE)
     # unix-style installs of Vorbis/Ogg/OpenAL/etc. they will be picked up over our frameworks. This is blocking when I make releases :
     # the mac I use to make STK releases does have other installs of vorbis/ogg/etc. which aren't compatible with STK, so letting
     # CMake pick the library it wants essentially means I can't build.
-    set_target_properties(supertuxkart PROPERTIES LINK_FLAGS "-arch x86_64 -F/Library/Frameworks -framework OpenAL -framework Ogg -framework Vorbis")
+    set_target_properties(supermemekart PROPERTIES LINK_FLAGS "-arch x86_64 -F/Library/Frameworks -framework OpenAL -framework Ogg -framework Vorbis")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I/Library/Frameworks/OpenAL.framework/Versions/A/Headers")
 endif()
 
 if(USE_FRIBIDI)
-    target_link_libraries(supertuxkart ${FRIBIDI_LIBRARIES})
+    target_link_libraries(supermemekart ${FRIBIDI_LIBRARIES})
     add_definitions(-DENABLE_BIDI)
 endif()
 
@@ -419,27 +419,27 @@ endif()
 if(USE_WIIUSE)
     if(APPLE)
         find_library(BLUETOOTH_LIBRARY NAMES IOBluetooth PATHS /Developer/Library/Frameworks/IOBluetooth.framework)
-        target_link_libraries(supertuxkart wiiuse ${BLUETOOTH_LIBRARY})
+        target_link_libraries(supermemekart wiiuse ${BLUETOOTH_LIBRARY})
     elseif(WIN32)
         add_definitions(-DWIIUSE_STATIC)
         if(WIIUSE_BUILD)
-            target_link_libraries(supertuxkart wiiuse)
+            target_link_libraries(supermemekart wiiuse)
         else()
-            target_link_libraries(supertuxkart ${PROJECT_SOURCE_DIR}/dependencies/lib/wiiuse.lib)
+            target_link_libraries(supermemekart ${PROJECT_SOURCE_DIR}/dependencies/lib/wiiuse.lib)
         endif()
     else()
-        target_link_libraries(supertuxkart wiiuse bluetooth)
+        target_link_libraries(supermemekart wiiuse bluetooth)
     endif()
     add_definitions(-DENABLE_WIIUSE)
 
 endif()
 
 if(MSVC OR MINGW)
-  target_link_libraries(supertuxkart iphlpapi.lib)
-  add_custom_command(TARGET supertuxkart POST_BUILD
+  target_link_libraries(supermemekart iphlpapi.lib)
+  add_custom_command(TARGET supermemekart POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
         "${PROJECT_SOURCE_DIR}/dependencies/dll"
-        $<TARGET_FILE_DIR:supertuxkart>)
+        $<TARGET_FILE_DIR:supermemekart>)
   add_custom_target(stkshaders SOURCES ${STK_SHADERS})
 endif()
 
@@ -473,11 +473,11 @@ if(CHECK_ASSETS)
        (IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/data/textures) AND
        (IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/data/tracks))
     message(STATUS "Assets found in data directory")
-  elseif(IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../stk-assets)
-    set(STK_ASSETS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../stk-assets/)
+  elseif(IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../smk-assets)
+    set(STK_ASSETS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../smk-assets/)
     message(STATUS "Assets found")
-  elseif(IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../supertuxkart-assets)
-    set(STK_ASSETS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../supertuxkart-assets/)
+  elseif(IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../supermemekart-assets)
+    set(STK_ASSETS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../supermemekart-assets/)
     message(STATUS "Assets found")
   else()
     set (CUR_DIR ${CMAKE_CURRENT_SOURCE_DIR})
@@ -489,16 +489,16 @@ endif()
 
 
 # ==== Install target ====
-install(TARGETS supertuxkart RUNTIME DESTINATION ${STK_INSTALL_BINARY_DIR} BUNDLE DESTINATION .)
+install(TARGETS supermemekart RUNTIME DESTINATION ${STK_INSTALL_BINARY_DIR} BUNDLE DESTINATION .)
 install(DIRECTORY ${STK_DATA_DIR} DESTINATION ${STK_INSTALL_DATA_DIR} PATTERN ".svn" EXCLUDE PATTERN ".git" EXCLUDE)
 if(STK_ASSETS_DIR AND CHECK_ASSETS)
   install(DIRECTORY ${STK_ASSETS_DIR} DESTINATION ${STK_INSTALL_DATA_DIR}/data PATTERN ".svn" EXCLUDE PATTERN ".git" EXCLUDE)
 endif()
-install(FILES ${STK_DATA_DIR}/supertuxkart.desktop DESTINATION share/applications)
-install(FILES data/supertuxkart_32.png DESTINATION share/icons/hicolor/32x32/apps RENAME supertuxkart.png)
-install(FILES data/supertuxkart_128.png DESTINATION share/icons/hicolor/128x128/apps RENAME supertuxkart.png)
-install(FILES data/supertuxkart_32.png data/supertuxkart_128.png DESTINATION share/pixmaps)
-install(FILES data/supertuxkart.appdata.xml DESTINATION share/appdata)
+install(FILES ${STK_DATA_DIR}/supermemekart.desktop DESTINATION share/applications)
+install(FILES data/supermemekart_32.png DESTINATION share/icons/hicolor/32x32/apps RENAME supermemekart.png)
+install(FILES data/supermemekart_128.png DESTINATION share/icons/hicolor/128x128/apps RENAME supermemekart.png)
+install(FILES data/supermemekart_32.png data/supermemekart_128.png DESTINATION share/pixmaps)
+install(FILES data/supermemekart.appdata.xml DESTINATION share/appdata)
 
 if(MINGW)
     install(DIRECTORY ${CMAKE_BINARY_DIR}/bin/ DESTINATION ${STK_INSTALL_BINARY_DIR}
