@@ -2,7 +2,7 @@
 Name=SuperMEMEKart
 Icon=supermemekart
 GenericName=A kart racing game with MEMES!!!
-Exec=supertuxkart
+Exec=supermemekart
 Terminal=false
 StartupNotify=false
 Type=Application
