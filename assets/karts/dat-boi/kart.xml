@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!-- Generated with script from SVN rev 16871 -->
+<kart name              = "Dat boi"
+      version           = "2"
+      model-file        = "dat boi.b3d"
+      icon-file         = "icon.png"
+      minimap-icon-file = "icon.png"
+      shadow-file       = "genericshadow.png"
+      type              = "light"
+      groups            = "standard"
+      rgb               = "1.00 1.00 1.00" >
+  <sounds engine = "small"/>
+  <hat offset="0.0 0.0 0.0"/>
+</kart>

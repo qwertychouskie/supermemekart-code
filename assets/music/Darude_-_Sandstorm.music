@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<music title    = "Sandstorm"
+       composer = "Darude"
+       gain     = "1.0"
+       file     = "Darude_-_Sandstorm.ogg" />
+
